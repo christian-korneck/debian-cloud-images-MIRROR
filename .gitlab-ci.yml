@@ -169,6 +169,13 @@ azure buster-backports build: &build-azure-buster-backports
     CLOUD_RELEASE: buster-backports
     CLOUD_VENDOR: azure
 
+azure bullseye build: &build-azure-bullseye
+  extends: .build dev manual
+  variables:
+    CLOUD_ARCH: amd64
+    CLOUD_RELEASE: bullseye
+    CLOUD_VENDOR: azure
+
 azure sid build: &build-azure-sid
   extends: .build dev pushes
   variables:
@@ -188,6 +195,13 @@ ec2 buster amd64 build: &build-ec2-amd64-buster
   variables:
     CLOUD_ARCH: amd64
     CLOUD_RELEASE: buster
+    CLOUD_VENDOR: ec2
+
+ec2 bullseye amd64 build: &build-ec2-amd64-bullseye
+  extends: .build dev manual
+  variables:
+    CLOUD_ARCH: amd64
+    CLOUD_RELEASE: bullseye
     CLOUD_VENDOR: ec2
 
 ec2 sid amd64 build: &build-ec2-amd64-sid
@@ -211,6 +225,13 @@ ec2 buster arm64 build: &build-ec2-arm64-buster
     CLOUD_RELEASE: buster
     CLOUD_VENDOR: ec2
 
+ec2 bullseye arm64 build: &build-ec2-arm64-bullseye
+  extends: .build dev manual
+  variables:
+    CLOUD_ARCH: arm64
+    CLOUD_RELEASE: bullseye
+    CLOUD_VENDOR: ec2
+
 ec2 sid arm64 build: &build-ec2-arm64-sid
   extends: .build dev pushes
   variables:
@@ -232,6 +253,13 @@ gce buster build: &build-gce-buster
     CLOUD_RELEASE: buster
     CLOUD_VENDOR: gce
 
+gce bullseye build: &build-gce-bullseye
+  extends: .build dev manual
+  variables:
+    CLOUD_ARCH: amd64
+    CLOUD_RELEASE: bullseye
+    CLOUD_VENDOR: gce
+
 gce sid build: &build-gce-sid
   extends: .build dev pushes
   variables:
@@ -244,6 +272,13 @@ generic buster amd64 build: &build-generic-buster-amd64
   variables:
     CLOUD_ARCH: amd64
     CLOUD_RELEASE: buster
+    CLOUD_VENDOR: generic
+
+generic bullseye amd64 build: &build-generic-bullseye-amd64
+  extends: .build dev manual
+  variables:
+    CLOUD_ARCH: amd64
+    CLOUD_RELEASE: bullseye
     CLOUD_VENDOR: generic
 
 generic sid amd64 build: &build-generic-sid-amd64
@@ -260,6 +295,13 @@ generic buster arm64 build: &build-generic-buster-arm64
     CLOUD_RELEASE: buster
     CLOUD_VENDOR: generic
 
+generic bullseye arm64 build: &build-generic-bullseye-arm64
+  extends: .build dev manual
+  variables:
+    CLOUD_ARCH: arm64
+    CLOUD_RELEASE: bullseye
+    CLOUD_VENDOR: generic
+
 generic sid arm64 build: &build-generic-sid-arm64
   extends: .build dev pushes
   variables:
@@ -274,6 +316,13 @@ generic buster ppc64el build: &build-generic-buster-ppc64el
     CLOUD_RELEASE: buster
     CLOUD_VENDOR: generic
 
+generic bullseye ppc64el build: &build-generic-bullseye-ppc64el
+  extends: .build dev manual
+  variables:
+    CLOUD_ARCH: ppc64el
+    CLOUD_RELEASE: bullseye
+    CLOUD_VENDOR: generic
+
 generic sid ppc64el build: &build-generic-sid-ppc64el
   extends: .build dev pushes
   variables:
@@ -286,6 +335,13 @@ genericcloud buster amd64 build: &build-genericcloud-buster-amd64
   variables:
     CLOUD_ARCH: amd64
     CLOUD_RELEASE: buster
+    CLOUD_VENDOR: genericcloud
+
+genericcloud bullseye amd64 build: &build-genericcloud-bullseye-amd64
+  extends: .build dev manual
+  variables:
+    CLOUD_ARCH: amd64
+    CLOUD_RELEASE: bullseye
     CLOUD_VENDOR: genericcloud
 
 genericcloud sid amd64 build: &build-genericcloud-sid-amd64
@@ -307,6 +363,13 @@ nocloud buster amd64 build: &build-nocloud-buster-amd64
   variables:
     CLOUD_ARCH: amd64
     CLOUD_RELEASE: buster
+    CLOUD_VENDOR: nocloud
+
+nocloud bullseye amd64 build: &build-nocloud-bullseye-amd64
+  extends: .build dev manual
+  variables:
+    CLOUD_ARCH: amd64
+    CLOUD_RELEASE: bullseye
     CLOUD_VENDOR: nocloud
 
 nocloud sid amd64 build: &build-nocloud-sid-amd64
@@ -346,6 +409,10 @@ azure buster build official:
   <<: *build-azure-buster
   extends: .build official
 
+azure bullseye build official:
+  <<: *build-azure-bullseye
+  extends: .build official
+
 azure buster-backports build official:
   <<: *build-azure-buster-backports
   extends: .build official
@@ -362,6 +429,10 @@ ec2 buster amd64 build official:
   <<: *build-ec2-amd64-buster
   extends: .build official
 
+ec2 bullseye amd64 build official:
+  <<: *build-ec2-amd64-bullseye
+  extends: .build official
+
 ec2 sid amd64 build official:
   <<: *build-ec2-amd64-sid
   extends: .build official
@@ -372,6 +443,10 @@ ec2 stretch arm64 build official:
 
 ec2 buster arm64 build official:
   <<: *build-ec2-arm64-buster
+  extends: .build official
+
+ec2 bullseye arm64 build official:
+  <<: *build-ec2-arm64-bullseye
   extends: .build official
 
 ec2 sid arm64 build official:
@@ -386,12 +461,20 @@ gce buster build official:
   <<: *build-gce-buster
   extends: .build official
 
+gce bullseye build official:
+  <<: *build-gce-bullseye
+  extends: .build official
+
 gce sid build official:
   <<: *build-gce-sid
   extends: .build official
 
 generic buster amd64 build official:
   <<: *build-generic-buster-amd64
+  extends: .build official
+
+generic bullseye amd64 build official:
+  <<: *build-generic-bullseye-amd64
   extends: .build official
 
 generic sid amd64 build official:
@@ -402,6 +485,10 @@ generic buster arm64 build official:
   <<: *build-generic-buster-arm64
   extends: .build official
 
+generic bullseye arm64 build official:
+  <<: *build-generic-bullseye-arm64
+  extends: .build official
+
 generic sid arm64 build official:
   <<: *build-generic-sid-arm64
   extends: .build official
@@ -410,12 +497,20 @@ generic buster ppc64el build official:
   <<: *build-generic-buster-ppc64el
   extends: .build official
 
+generic bullseye ppc64el build official:
+  <<: *build-generic-bullseye-ppc64el
+  extends: .build official
+
 generic sid ppc64el build official:
   <<: *build-generic-sid-ppc64el
   extends: .build official
 
 genericcloud buster amd64 build official:
   <<: *build-genericcloud-buster-amd64
+  extends: .build official
+
+genericcloud bullseye amd64 build official:
+  <<: *build-genericcloud-bullseye-amd64
   extends: .build official
 
 genericcloud sid amd64 build official:
@@ -428,6 +523,10 @@ nocloud stretch amd64 build official:
 
 nocloud buster amd64 build official:
   <<: *build-nocloud-buster-amd64
+  extends: .build official
+
+nocloud bullseye amd64 build official:
+  <<: *build-nocloud-bullseye-amd64
   extends: .build official
 
 nocloud sid amd64 build official:
@@ -451,6 +550,7 @@ azure upload:
     - azure stretch-backports build
     - azure buster build
     - azure buster-backports build
+    - azure bullseye build
     - azure sid build
   only:
     refs:
@@ -476,9 +576,11 @@ ec2 upload:
   dependencies:
     - ec2 stretch amd64 build
     - ec2 buster amd64 build
+    - ec2 bullseye amd64 build
     - ec2 sid amd64 build
     - ec2 stretch arm64 build
     - ec2 buster arm64 build
+    - ec2 bullseye arm64 build
     - ec2 sid arm64 build
   only:
     refs:
@@ -504,6 +606,7 @@ gce upload:
   dependencies:
     - gce stretch build
     - gce buster build
+    - gce bullseye build
     - gce sid build
   only:
     refs:
@@ -536,6 +639,7 @@ azure upload daily:
   dependencies:
     - azure buster build official
     - azure buster-backports build official
+    - azure bullseye build official
     - azure sid build official
   only:
     refs:
@@ -559,8 +663,10 @@ ec2 upload daily:
       *.build.json
   dependencies:
     - ec2 buster amd64 build official
+    - ec2 bullseye amd64 build official
     - ec2 sid amd64 build official
     - ec2 buster arm64 build official
+    - ec2 bullseye arm64 build official
     - ec2 sid arm64 build official
   only:
     refs:
